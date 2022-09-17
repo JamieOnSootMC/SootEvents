@@ -8,3 +8,7 @@ toggled: true
 # Chat Option
 chat:
   toggled: false
+
+# Event Options
+waterRising:
+  toggled: false

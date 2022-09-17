@@ -6,6 +6,9 @@ import net.sootmc.sootevents.MuteChat.ChatUtils;
 import net.sootmc.sootevents.Scoreboard.ScoreboardCommands;
 import net.sootmc.sootevents.Scoreboard.ScoreboardEventHandler;
 import net.sootmc.sootevents.Scoreboard.ScoreboardUtils;
+import net.sootmc.sootevents.WaterRising.WaterRisingCommand;
+import net.sootmc.sootevents.WaterRising.WaterRisingEvents;
+import net.sootmc.sootevents.WaterRising.WaterRisingUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,6 +21,7 @@ public final class SootEvents extends JavaPlugin {
     public void onEnable() {
         new ScoreboardUtils();
         new ChatUtils();
+        new WaterRisingUtils();
 
         instance = this;
         saveDefaultConfig();
@@ -28,9 +32,11 @@ public final class SootEvents extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ScoreboardEventHandler(), this);
         getCommand("scoreboard").setExecutor(new ScoreboardCommands());
 
-        getCommand("togglechat").setExecutor(new ChatCommand());
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        getCommand("togglechat").setExecutor(new ChatCommand());
 
+        getServer().getPluginManager().registerEvents(new WaterRisingEvents(), this);
+        getCommand("toggledamager").setExecutor(new WaterRisingCommand());
 
         getLogger().info("SootEvents has been enabled!");
     }

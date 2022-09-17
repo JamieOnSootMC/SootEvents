@@ -16,6 +16,11 @@ commands:
         usage: /togglechat
         permission: sootevents.command.togglechat
 
+    toggledamager:
+        description: Command to toggle the damager on contact with water
+        usage: /toggledamager
+        permission: sootevents.command.toggledamager
+
 permissions:
     sootevents.command.eventscore:
         description: Allows the user to use the /scoreboard command
@@ -23,4 +28,8 @@ permissions:
 
     sootevents.command.togglechat:
         description: Allows the user to use the /togglechat command
+        default: op
+
+    sootevents.command.toggledamager:
+        description: Allows the user to use the /toggledamager command
         default: op
