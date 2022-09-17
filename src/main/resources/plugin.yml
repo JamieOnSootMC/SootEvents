@@ -11,7 +11,16 @@ commands:
         usage: /scoreboard <on|off|reload>
         permission: sootevents.command.scoreboard
 
+    togglechat:
+        description: Command to toggle the chat
+        usage: /togglechat
+        permission: sootevents.command.togglechat
+
 permissions:
     sootevents.command.eventscore:
         description: Allows the user to use the /scoreboard command
+        default: op
+
+    sootevents.command.togglechat:
+        description: Allows the user to use the /togglechat command
         default: op

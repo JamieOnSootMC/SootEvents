@@ -4,3 +4,7 @@ currentEvent: "None"
 host: "None"
 length: "None"   # Format Example: "2 hours"
 toggled: true
+
+# Chat Option
+chat:
+  toggled: false

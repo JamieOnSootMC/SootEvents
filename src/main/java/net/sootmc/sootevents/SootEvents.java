@@ -1,5 +1,8 @@
 package net.sootmc.sootevents;
 
+import net.sootmc.sootevents.MuteChat.ChatCommand;
+import net.sootmc.sootevents.MuteChat.ChatListener;
+import net.sootmc.sootevents.MuteChat.ChatUtils;
 import net.sootmc.sootevents.Scoreboard.ScoreboardCommands;
 import net.sootmc.sootevents.Scoreboard.ScoreboardEventHandler;
 import net.sootmc.sootevents.Scoreboard.ScoreboardUtils;
@@ -14,14 +17,20 @@ public final class SootEvents extends JavaPlugin {
     @Override
     public void onEnable() {
         new ScoreboardUtils();
+        new ChatUtils();
 
         instance = this;
         saveDefaultConfig();
 
         ScoreboardUtils.getScoreboardUtils().setScoreboardEnabled(this.getConfig().getBoolean("toggled"));
+        ChatUtils.getChatUtils().setChatEnabled(this.getConfig().getBoolean("chat.toggled"));
 
         getServer().getPluginManager().registerEvents(new ScoreboardEventHandler(), this);
         getCommand("scoreboard").setExecutor(new ScoreboardCommands());
+
+        getCommand("togglechat").setExecutor(new ChatCommand());
+        getServer().getPluginManager().registerEvents(new ChatListener(), this);
+
 
         getLogger().info("SootEvents has been enabled!");
     }
