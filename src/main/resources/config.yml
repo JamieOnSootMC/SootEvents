@@ -1,0 +1,6 @@
+# Scoreboard Options
+
+currentEvent: "None"
+host: "None"
+length: "None"   # Format Example: "2 hours"
+toggled: true

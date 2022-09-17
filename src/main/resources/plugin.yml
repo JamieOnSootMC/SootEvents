@@ -1,0 +1,17 @@
+name: SootEvents
+version: '${project.version}'
+main: net.sootmc.sootevents.SootEvents
+api-version: 1.19
+authors: [ JamieIsGeek ]
+description: A base plugin for SootMC's events!
+
+commands:
+    scoreboard:
+        description: Command to interact with the events scoreboard
+        usage: /scoreboard <on|off|reload>
+        permission: sootevents.command.scoreboard
+
+permissions:
+    sootevents.command.eventscore:
+        description: Allows the user to use the /scoreboard command
+        default: op
