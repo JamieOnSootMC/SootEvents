@@ -24,10 +24,10 @@ commands:
     bossbar:
         description: Command to toggle the bossbar
         usage: /bossbar <on|off|reload>
-        permission: sootevents.command.togglebossbar
+        permission: sootevents.command.bossbar
 
 permissions:
-    sootevents.command.eventscore:
+    sootevents.command.scoreboard:
         description: Allows the user to use the /scoreboard command
         default: op
 
