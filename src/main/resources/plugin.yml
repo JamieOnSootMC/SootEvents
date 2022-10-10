@@ -8,7 +8,7 @@ description: A base plugin for SootMC's events!
 commands:
     scoreboard:
         description: Command to interact with the events scoreboard
-        usage: /scoreboard <on|off|reload>
+        usage: /scoreboard <on|off|start|pause|reload>
         permission: sootevents.command.scoreboard
 
     togglechat:
@@ -21,6 +21,11 @@ commands:
         usage: /toggledamager
         permission: sootevents.command.toggledamager
 
+    bossbar:
+        description: Command to toggle the bossbar
+        usage: /bossbar <on|off|reload>
+        permission: sootevents.command.togglebossbar
+
 permissions:
     sootevents.command.eventscore:
         description: Allows the user to use the /scoreboard command
@@ -32,4 +37,8 @@ permissions:
 
     sootevents.command.toggledamager:
         description: Allows the user to use the /toggledamager command
+        default: op
+
+    sootevents.command.bossbar:
+        description: Allows the user to use the /bossbar command
         default: op

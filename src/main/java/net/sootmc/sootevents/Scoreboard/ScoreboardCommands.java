@@ -15,7 +15,7 @@ public class ScoreboardCommands implements CommandExecutor, TabCompleter {
 
         if (args.length == 0) {
             sender.sendMessage(SootEvents.PREFIX + "Invalid argument(s). Correct usage:");
-            sender.sendMessage(SootEvents.PREFIX + "/scoreboard <on|off>");
+            sender.sendMessage(SootEvents.PREFIX + "/scoreboard <on|off|start|pause|reload>");
             return true;
         }
 
@@ -34,6 +34,11 @@ public class ScoreboardCommands implements CommandExecutor, TabCompleter {
                 return true;
             }
 
+            if(args[0].equalsIgnoreCase("start")) {
+                ScoreboardUtils.getScoreboardUtils().setTimerRunning(true);
+                ScoreboardUtils.getScoreboardUtils().Start();
+            }
+
             if(args[0].equalsIgnoreCase("reload")) {
                 SootEvents.instance.reloadConfig();
                 Bukkit.getOnlinePlayers().forEach(player -> ScoreboardUtils.getScoreboardUtils().makeScoreboard(player));
@@ -41,9 +46,13 @@ public class ScoreboardCommands implements CommandExecutor, TabCompleter {
                 return true;
             }
 
+            if(args[0].equalsIgnoreCase("pause")) {
+                ScoreboardUtils.getScoreboardUtils().setTimerRunning(false);
+            }
+
         } else {
             sender.sendMessage(SootEvents.PREFIX + "Invalid argument(s). Correct usage:");
-            sender.sendMessage(SootEvents.PREFIX + "/scoreboard <on|off|reload>");
+            sender.sendMessage(SootEvents.PREFIX + "/scoreboard <on|off|start|pause|reload>");
 
             return true;
         }
@@ -55,9 +64,7 @@ public class ScoreboardCommands implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 
         if(args.length == 1) {
-            return List.of("on", "off", "set", "get");
-        } else if (args.length == 2) {
-            return List.of("current", "host", "timer");
+            return List.of("on", "off", "start", "pause", "reload");
         } else {
             return null;
         }

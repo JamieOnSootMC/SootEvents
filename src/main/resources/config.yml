@@ -2,7 +2,7 @@
 
 currentEvent: "None"
 host: "None"
-length: "None"   # Format Example: "2 hours"
+length: 0   # Must be in milliseconds!!
 toggled: true
 
 # Chat Option
@@ -12,3 +12,7 @@ chat:
 # Event Options
 waterRising:
   toggled: false
+
+bossbar:
+    toggled: false
+    title: "None"
