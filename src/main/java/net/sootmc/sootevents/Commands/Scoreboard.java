@@ -1,22 +1,18 @@
-package net.sootmc.sootevents.Scoreboard;
+package net.sootmc.sootevents.Commands;
 
 import net.sootmc.sootevents.SootEvents;
+import net.sootmc.sootevents.Utils.CommandInfo;
+import net.sootmc.sootevents.Utils.ScoreboardUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 
-import java.util.List;
-
-public class ScoreboardCommands implements CommandExecutor, TabCompleter {
+@CommandInfo(name = "scoreboard", permission = "sootevents.command.scoreboard", requiresPlayer = false)
+public class Scoreboard extends CommandHandler {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+    public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
             sender.sendMessage(SootEvents.PREFIX + "Invalid argument(s). Correct usage:");
             sender.sendMessage(SootEvents.PREFIX + "/scoreboard <on|off|start|pause|reload>");
-            return true;
         }
 
         if (args.length == 1) {
@@ -24,14 +20,12 @@ public class ScoreboardCommands implements CommandExecutor, TabCompleter {
                 ScoreboardUtils.getScoreboardUtils().setScoreboardEnabled(true);
                 Bukkit.getOnlinePlayers().forEach(player -> ScoreboardUtils.getScoreboardUtils().makeScoreboard(player));
                 sender.sendMessage(SootEvents.PREFIX + "Scoreboard has been enabled.");
-                return true;
             }
 
             if (args[0].equalsIgnoreCase("off")) {
                 ScoreboardUtils.getScoreboardUtils().setScoreboardEnabled(false);
                 Bukkit.getOnlinePlayers().forEach(player -> player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard()));
                 sender.sendMessage(SootEvents.PREFIX + "Scoreboard has been disabled.");
-                return true;
             }
 
             if(args[0].equalsIgnoreCase("start")) {
@@ -43,7 +37,6 @@ public class ScoreboardCommands implements CommandExecutor, TabCompleter {
                 SootEvents.instance.reloadConfig();
                 Bukkit.getOnlinePlayers().forEach(player -> ScoreboardUtils.getScoreboardUtils().makeScoreboard(player));
                 sender.sendMessage(SootEvents.PREFIX + "Config and Scoreboard have been reloaded.");
-                return true;
             }
 
             if(args[0].equalsIgnoreCase("pause")) {
@@ -53,20 +46,6 @@ public class ScoreboardCommands implements CommandExecutor, TabCompleter {
         } else {
             sender.sendMessage(SootEvents.PREFIX + "Invalid argument(s). Correct usage:");
             sender.sendMessage(SootEvents.PREFIX + "/scoreboard <on|off|start|pause|reload>");
-
-            return true;
-        }
-
-        return true;
-    }
-
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-
-        if(args.length == 1) {
-            return List.of("on", "off", "start", "pause", "reload");
-        } else {
-            return null;
         }
     }
 }

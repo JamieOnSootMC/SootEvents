@@ -1,26 +1,24 @@
 package net.sootmc.sootevents;
 
-import net.sootmc.sootevents.Bossbar.BossbarCommand;
-import net.sootmc.sootevents.Bossbar.BossbarEvents;
-import net.sootmc.sootevents.Bossbar.BossbarUtils;
-import net.sootmc.sootevents.MuteChat.ChatCommand;
-import net.sootmc.sootevents.MuteChat.ChatListener;
-import net.sootmc.sootevents.MuteChat.ChatUtils;
-import net.sootmc.sootevents.Scoreboard.ScoreboardCommands;
-import net.sootmc.sootevents.Scoreboard.ScoreboardEventHandler;
-import net.sootmc.sootevents.Scoreboard.ScoreboardUtils;
-import net.sootmc.sootevents.WaterRising.WaterRisingCommand;
-import net.sootmc.sootevents.WaterRising.WaterRisingEvents;
-import net.sootmc.sootevents.WaterRising.WaterRisingUtils;
+import net.sootmc.sootevents.Commands.CommandHandler;
+import net.sootmc.sootevents.Utils.BossbarUtils;
+import net.sootmc.sootevents.Utils.ChatUtils;
+import net.sootmc.sootevents.Utils.ScoreboardUtils;
+import net.sootmc.sootevents.Utils.WaterRisingUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.reflections.Reflections;
+
+import java.lang.reflect.InvocationTargetException;
 
 public final class SootEvents extends JavaPlugin {
 
     public static SootEvents instance;
     public static String PREFIX = ChatColor.GOLD + "Soot" + ChatColor.RED + "Events" + ChatColor.RESET + " | ";
+    private final String packageName = this.getClass().getPackage().getName();
 
     @Override
     public void onEnable() {
@@ -37,17 +35,12 @@ public final class SootEvents extends JavaPlugin {
         ScoreboardUtils.getScoreboardUtils().setScoreboardEnabled(this.getConfig().getBoolean("toggled"));
         ChatUtils.getChatUtils().setChatEnabled(this.getConfig().getBoolean("chat.toggled"));
 
-        getServer().getPluginManager().registerEvents(new ScoreboardEventHandler(), this);
-        getCommand("scoreboard").setExecutor(new ScoreboardCommands());
-
-        getServer().getPluginManager().registerEvents(new ChatListener(), this);
-        getCommand("togglechat").setExecutor(new ChatCommand());
-
-        getServer().getPluginManager().registerEvents(new WaterRisingEvents(), this);
-        getCommand("toggledamager").setExecutor(new WaterRisingCommand());
-
-        getServer().getPluginManager().registerEvents(new BossbarEvents(), this);
-        getCommand("bossbar").setExecutor(new BossbarCommand());
+        try {
+            registerCommands();
+            registerListeners();
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         getLogger().info("SootEvents has been enabled!");
     }
@@ -70,5 +63,20 @@ public final class SootEvents extends JavaPlugin {
                 }
             }
         }.runTaskTimer(this, 0, 20L);
+    }
+
+    private void registerCommands() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        for(Class<? extends CommandHandler> clazz: new Reflections(packageName + ".Commands").getSubTypesOf(CommandHandler.class)) {
+            CommandHandler commandHandler = clazz.getDeclaredConstructor().newInstance();
+            getCommand(commandHandler.getCommandInfo().name()).setExecutor(commandHandler);
+        }
+    }
+
+    private void registerListeners() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        for(Class<?> clazz : new Reflections(packageName + ".Listeners")
+                .getSubTypesOf(Listener.class)) {
+            Listener listener = (Listener) clazz.getDeclaredConstructor().newInstance();
+            getServer().getPluginManager().registerEvents(listener, this);
+        }
     }
 }

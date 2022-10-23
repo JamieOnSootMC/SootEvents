@@ -1,5 +1,6 @@
-package net.sootmc.sootevents.Scoreboard;
+package net.sootmc.sootevents.Listeners;
 
+import net.sootmc.sootevents.Utils.ScoreboardUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

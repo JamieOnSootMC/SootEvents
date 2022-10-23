@@ -1,4 +1,4 @@
-package net.sootmc.sootevents.MuteChat;
+package net.sootmc.sootevents.Utils;
 
 import net.sootmc.sootevents.SootEvents;
 

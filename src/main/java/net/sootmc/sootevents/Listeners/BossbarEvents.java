@@ -1,5 +1,6 @@
-package net.sootmc.sootevents.Bossbar;
+package net.sootmc.sootevents.Listeners;
 
+import net.sootmc.sootevents.Utils.BossbarUtils;
 import net.sootmc.sootevents.SootEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

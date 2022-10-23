@@ -1,4 +1,4 @@
-package net.sootmc.sootevents.Scoreboard;
+package net.sootmc.sootevents.Utils;
 
 import net.sootmc.sootevents.SootEvents;
 import org.bukkit.Bukkit;

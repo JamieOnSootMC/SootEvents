@@ -1,4 +1,4 @@
-package net.sootmc.sootevents.Bossbar;
+package net.sootmc.sootevents.Utils;
 
 import net.sootmc.sootevents.SootEvents;
 import org.bukkit.Bukkit;
@@ -6,7 +6,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class BossbarUtils {
     public static BossbarUtils bossbarUtils;

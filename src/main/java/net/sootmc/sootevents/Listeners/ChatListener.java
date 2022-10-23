@@ -1,5 +1,6 @@
-package net.sootmc.sootevents.MuteChat;
+package net.sootmc.sootevents.Listeners;
 
+import net.sootmc.sootevents.Utils.ChatUtils;
 import net.sootmc.sootevents.SootEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

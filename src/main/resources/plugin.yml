@@ -9,22 +9,18 @@ commands:
     scoreboard:
         description: Command to interact with the events scoreboard
         usage: /scoreboard <on|off|start|pause|reload>
-        permission: sootevents.command.scoreboard
 
     togglechat:
         description: Command to toggle the chat
         usage: /togglechat
-        permission: sootevents.command.togglechat
 
-    toggledamager:
+    toggledeath:
         description: Command to toggle the damager on contact with water
         usage: /toggledamager
-        permission: sootevents.command.toggledamager
 
     bossbar:
         description: Command to toggle the bossbar
         usage: /bossbar <on|off|reload>
-        permission: sootevents.command.bossbar
 
 permissions:
     sootevents.command.scoreboard:

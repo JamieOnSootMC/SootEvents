@@ -1,5 +1,6 @@
-package net.sootmc.sootevents.WaterRising;
+package net.sootmc.sootevents.Listeners;
 
+import net.sootmc.sootevents.Utils.WaterRisingUtils;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,4 +1,4 @@
-package net.sootmc.sootevents.WaterRising;
+package net.sootmc.sootevents.Utils;
 
 import net.sootmc.sootevents.SootEvents;
 

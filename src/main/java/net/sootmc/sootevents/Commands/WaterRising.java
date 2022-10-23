@@ -1,14 +1,14 @@
-package net.sootmc.sootevents.WaterRising;
+package net.sootmc.sootevents.Commands;
 
 import net.sootmc.sootevents.SootEvents;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import net.sootmc.sootevents.Utils.CommandInfo;
+import net.sootmc.sootevents.Utils.WaterRisingUtils;
 import org.bukkit.command.CommandSender;
 
-public class WaterRisingCommand implements CommandExecutor {
+@CommandInfo(name = "toggledeath", permission = "sootevents.permission.toggledeath", requiresPlayer = false)
+public class WaterRising extends CommandHandler {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+    public void execute(CommandSender sender, String[] args) {
         if(WaterRisingUtils.getWaterRisingUtils().toggled) {
             WaterRisingUtils.getWaterRisingUtils().setWaterRisingEnabled(false);
             sender.sendMessage(SootEvents.PREFIX + "Water rising damage has been disabled.");
@@ -16,7 +16,5 @@ public class WaterRisingCommand implements CommandExecutor {
             WaterRisingUtils.getWaterRisingUtils().setWaterRisingEnabled(true);
             sender.sendMessage(SootEvents.PREFIX + "Water rising damage has been enabled.");
         }
-
-        return true;
     }
 }
