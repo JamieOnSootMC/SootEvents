@@ -22,6 +22,10 @@ commands:
         description: Command to toggle the bossbar
         usage: /bossbar <on|off|reload>
 
+    defaultgamemode:
+        description: Command to set the default gamemode for the event
+        usage: /defaultgamemode <survival|creative|adventure|spectator>
+
 permissions:
     sootevents.command.scoreboard:
         description: Allows the user to use the /scoreboard command
@@ -37,4 +41,8 @@ permissions:
 
     sootevents.command.bossbar:
         description: Allows the user to use the /bossbar command
+        default: op
+
+    sootevents.command.defaultgamemode:
+        description: Allows the user to use the /defaultgamemode command
         default: op

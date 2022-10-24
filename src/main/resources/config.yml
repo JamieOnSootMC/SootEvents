@@ -16,3 +16,5 @@ waterRising:
 bossbar:
     toggled: false
     title: "None"
+
+gamemode: "survival" #Default gamemode for the event (Fixes the dumb bug that makes players always default to survival)
