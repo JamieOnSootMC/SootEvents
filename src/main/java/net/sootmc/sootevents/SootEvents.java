@@ -1,6 +1,6 @@
 package net.sootmc.sootevents;
 
-import net.sootmc.sootevents.Commands.CommandHandler;
+import net.sootmc.sootevents.Utils.Helpers.CommandHandler;
 import net.sootmc.sootevents.Utils.BossbarUtils;
 import net.sootmc.sootevents.Utils.ChatUtils;
 import net.sootmc.sootevents.Utils.ScoreboardUtils;

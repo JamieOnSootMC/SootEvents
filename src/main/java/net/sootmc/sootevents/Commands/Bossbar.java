@@ -2,7 +2,8 @@ package net.sootmc.sootevents.Commands;
 
 import net.sootmc.sootevents.SootEvents;
 import net.sootmc.sootevents.Utils.BossbarUtils;
-import net.sootmc.sootevents.Utils.CommandInfo;
+import net.sootmc.sootevents.Utils.Helpers.CommandHandler;
+import net.sootmc.sootevents.Utils.Helpers.CommandInfo;
 import org.bukkit.command.CommandSender;
 
 @CommandInfo(name = "bossbar", permission = "sootevents.command.bossbar", requiresPlayer = false)

@@ -2,7 +2,8 @@ package net.sootmc.sootevents.Commands;
 
 import net.sootmc.sootevents.SootEvents;
 import net.sootmc.sootevents.Utils.ChatUtils;
-import net.sootmc.sootevents.Utils.CommandInfo;
+import net.sootmc.sootevents.Utils.Helpers.CommandHandler;
+import net.sootmc.sootevents.Utils.Helpers.CommandInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 

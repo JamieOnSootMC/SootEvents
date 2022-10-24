@@ -1,4 +1,4 @@
-package net.sootmc.sootevents.Utils;
+package net.sootmc.sootevents.Utils.Helpers;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

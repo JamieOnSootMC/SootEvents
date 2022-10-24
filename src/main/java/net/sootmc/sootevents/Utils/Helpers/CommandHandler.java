@@ -1,6 +1,6 @@
-package net.sootmc.sootevents.Commands;
+package net.sootmc.sootevents.Utils.Helpers;
 
-import net.sootmc.sootevents.Utils.CommandInfo;
+import net.sootmc.sootevents.Utils.Helpers.CommandInfo;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
