@@ -3,6 +3,7 @@ package net.sootmc.sootevents.Utils;
 import net.sootmc.sootevents.SootEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.*;
@@ -14,6 +15,7 @@ public class ScoreboardUtils {
     private ScoreboardManager scoreboardManager;
     public boolean toggled;
     int roundLength = SootEvents.instance.getConfig().getInt("length");
+    private final Configuration config = SootEvents.instance.getConfig();
     private boolean timerRunning = false;
 
     public void makeScoreboard(Player player) {
@@ -40,6 +42,11 @@ public class ScoreboardUtils {
         this.toggled = toggled;
     }
     public void setTimerRunning(boolean timerRunning) { this.timerRunning = timerRunning; }
+    public void setTimer(int timer) {
+        this.roundLength = timer;
+        this.config.set("length", timer);
+        this.Start();
+    }
 
     public void Start() {
         new BukkitRunnable() {
