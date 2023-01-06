@@ -17,6 +17,7 @@ public class JoinListener implements Listener {
             @Override
             public void run() {
                 if(gamemode != null) {
+                    if(event.getPlayer().hasPermission("sootevents.default.bypass")) return;
                     event.getPlayer().setGameMode(gamemode);
                 } else {
                     SootEvents.instance.getLogger().severe("Invalid gamemode in config.yml! Defaulting to survival");

@@ -1,16 +1,15 @@
 package net.sootmc.sootevents;
 
-import net.sootmc.sootevents.Utils.Helpers.CommandHandler;
+import dev.jamieisgeek.CommandRegisterer;
+import dev.jamieisgeek.EventRegisterer;
 import net.sootmc.sootevents.Utils.BossbarUtils;
 import net.sootmc.sootevents.Utils.ChatUtils;
 import net.sootmc.sootevents.Utils.ScoreboardUtils;
 import net.sootmc.sootevents.Utils.WaterRisingUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -18,7 +17,6 @@ public final class SootEvents extends JavaPlugin {
 
     public static SootEvents instance;
     public static String PREFIX = ChatColor.GOLD + "Soot" + ChatColor.RED + "Events" + ChatColor.RESET + " | ";
-    private final String packageName = this.getClass().getPackage().getName();
 
     @Override
     public void onEnable() {
@@ -36,8 +34,8 @@ public final class SootEvents extends JavaPlugin {
         ChatUtils.getChatUtils().setChatEnabled(this.getConfig().getBoolean("chat.toggled"));
 
         try {
-            registerCommands();
-            registerListeners();
+            new CommandRegisterer(this, getClass().getPackage().getName(), "Commands").registerCommands();
+            new EventRegisterer(this, getClass().getPackage().getName(), "Listeners").registerEvents();
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -63,20 +61,5 @@ public final class SootEvents extends JavaPlugin {
                 }
             }
         }.runTaskTimer(this, 0, 20L);
-    }
-
-    private void registerCommands() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        for(Class<? extends CommandHandler> clazz: new Reflections(packageName + ".Commands").getSubTypesOf(CommandHandler.class)) {
-            CommandHandler commandHandler = clazz.getDeclaredConstructor().newInstance();
-            getCommand(commandHandler.getCommandInfo().name()).setExecutor(commandHandler);
-        }
-    }
-
-    private void registerListeners() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        for(Class<?> clazz : new Reflections(packageName + ".Listeners")
-                .getSubTypesOf(Listener.class)) {
-            Listener listener = (Listener) clazz.getDeclaredConstructor().newInstance();
-            getServer().getPluginManager().registerEvents(listener, this);
-        }
     }
 }
