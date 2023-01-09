@@ -54,3 +54,6 @@ permissions:
     sootevents.command.timer:
         description: Allows the user to use the /timer command
         default: op
+    sootevents.default.bypass:
+        description: Allows the user to bypass the default gamemode
+        default: op

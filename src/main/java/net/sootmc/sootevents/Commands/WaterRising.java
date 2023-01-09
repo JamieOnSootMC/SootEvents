@@ -1,8 +1,8 @@
 package net.sootmc.sootevents.Commands;
 
+import dev.jamieisgeek.CommandHandler;
+import dev.jamieisgeek.CommandInfo;
 import net.sootmc.sootevents.SootEvents;
-import net.sootmc.sootevents.Utils.Helpers.CommandHandler;
-import net.sootmc.sootevents.Utils.Helpers.CommandInfo;
 import net.sootmc.sootevents.Utils.WaterRisingUtils;
 import org.bukkit.command.CommandSender;
 
