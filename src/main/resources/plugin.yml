@@ -4,6 +4,9 @@ main: net.sootmc.sootevents.SootEvents
 api-version: 1.19
 authors: [ JamieIsGeek ]
 description: A base plugin for SootMC's events!
+depend:
+    - WorldGuard
+    - FastAsyncWorldEdit
 
 commands:
     scoreboard:
@@ -29,6 +32,10 @@ commands:
     timer:
         description: Command to set the timer for the event
         usage: /timer <time in millis>
+
+    eventtools:
+        description: Command to get the event tools
+        usage: /eventtools
 
 permissions:
     sootevents.command.scoreboard:
