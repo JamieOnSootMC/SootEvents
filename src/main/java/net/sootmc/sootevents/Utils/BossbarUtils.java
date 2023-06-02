@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.Player;
 
 public class BossbarUtils {
     public static BossbarUtils bossbarUtils;
@@ -27,6 +28,8 @@ public class BossbarUtils {
 
         Bukkit.getOnlinePlayers().forEach(player -> this.bossbar.addPlayer(player));
     }
+    
+    public void giveBar(Player player) { this.bossbar.addPlayer(player);}
 
     public void removeBar() {
         Bukkit.getOnlinePlayers().forEach(player -> this.bossbar.removePlayer(player));
