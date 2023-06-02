@@ -11,6 +11,6 @@ public class BossbarEvents implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         if(SootEvents.instance.getConfig().getBoolean("bossbar.toggled"))
-            BossbarUtils.getBossbarUtils().makeBar();
+            BossbarUtils.getBossbarUtils().giveBar(event.getPlayer());
     }
 }
